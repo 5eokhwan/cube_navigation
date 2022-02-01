@@ -1,38 +1,87 @@
-.App {
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+body {
+  background-color: white;
+}
+#CubeScene {
+  position: fixed;
+  right: 0;
+  top: 0;
+  perspective-origin: right top;
+
+  box-sizing: border-box;
+  transition: 0.5s;
+}
+#CubeScene.active {
+  /* perspective: 500px; */
+  transform: translate(calc(-50vw + 100px), calc(50vh - 100px));
+  perspective-origin: center center;
+}
+#MenuDesc {
   text-align: center;
+  position: relative;
+  bottom: 100px;
+}
+.cube {
+  width: 200px;
+  height: 200px;
+  position: relative;
+  transform-style: preserve-3d;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.cube .face {
+  background-color: gray;
+  /* opacity: 0.5; */
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transform: translateZ(-100px);
+  /* box-shadow: inset 5px 5px 10px black, inset -5px -5px 10px black; */
+  /* border: 3px solid white; */
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+}
+
+.cube .face.front {
+  transform: rotateY(0deg) translateZ(100px);
+  /* box-shadow: inset 10px 10px 50px black, inset -10px -10px 50px black; */
+}
+.cube .face.front span {
+  position: absolute;
+  width: 65%;
+  height: 7.5%;
+  background: black;
+  border-radius: 4px;
+}
+.cube .face.front span:nth-child(1) {
+  transform: translateY(25px);
+}
+.cube .face.front span:nth-child(3) {
+  transform: translateY(-25px);
+}
+.cube .face.top {
+  transform: rotateX(90deg) translateZ(100px);
+}
+.cube .face.bottom {
+  transform: rotateX(-90deg) translateZ(100px);
+}
+.cube .face.back {
+  transform: rotateY(180deg) translateZ(100px);
+}
+.cube .face.left {
+  transform: rotateY(-90deg) translateZ(100px);
+}
+.cube .face.right {
+  transform: rotateY(90deg) translateZ(100px);
+}
+
+#MenuDesc {
   color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }
