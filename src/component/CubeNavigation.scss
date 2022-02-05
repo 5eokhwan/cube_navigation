@@ -75,9 +75,11 @@
       width: 200px;
       height: 200px;
       .face {
+        &.active {
+          box-shadow: inset 5px 5px 10px black, inset -5px -5px 10px black;
+        }
         box-shadow: inset 10px 10px 50px black, inset -10px -10px 50px black;
         &.front {
-          box-shadow: inset 5px 5px 10px black, inset -5px -5px 10px black;
           span {
             &:nth-child(1) {
               transform: translateY(0px) rotate(45deg);
