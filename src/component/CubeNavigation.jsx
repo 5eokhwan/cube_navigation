@@ -2,6 +2,25 @@ import "./CubeNavigation.scss";
 import Face from "./Face";
 import { useState, useEffect, useRef } from "react";
 
+const sides = ["front", "left", "back", "right", "top", "bottom"];
+const iconNames = ["logo-dropbox", "log-in", "radio-button-on", "map", "grid"];
+
+function returnCurFace(x, y) {
+  let nx = (x % 360) / 90;
+  const ny = (y % 360) / 90;
+  if ((2.5 <= ny && ny < 3.5) || (-1.5 <= ny && ny < -0.5)) return "top";
+  else if ((-3.5 <= ny && ny < -2.5) || (0.5 <= ny && ny < 1.5))
+    return "bottom";
+
+  if ((1.5 <= ny && ny < 2.5) || (-2.5 <= ny && ny < -1.5)) {
+    if (nx > 0) return sides[Math.round(nx + 2) % 4];
+    else return sides[(4 + Math.round(nx + 2)) % 4];
+  } else {
+    if (nx > 0) return sides[Math.round(nx) % 4];
+    else return sides[(4 + Math.round(nx)) % 4];
+  }
+}
+
 function CubeNavigation() {
   function updatePos(e) {
     //마우스 이벤트 발생시 마우스 갱신
@@ -17,19 +36,6 @@ function CubeNavigation() {
     console.log(currentRotate.current);
     //console.log("mousePos:", pos.current.mouse, "mouseCube:", pos.current.cube);
   }
-  function returnCurFace(x, y) {
-    let nx = (x % 360) / 90;
-    const ny = (y % 360) / 90;
-    if ((2.5 <= ny && ny < 3.5) || (-1.5 <= ny && ny < -0.5)) return "top";
-    else if ((-3.5 <= ny && ny < -2.5) || (0.5 <= ny && ny < 1.5))
-      return "bottom";
-
-    if ((1.5 <= ny && ny < 2.5) || (-2.5 <= ny && ny < -1.5)) {
-      return sides[Math.round(nx + 2) % 4];
-    } else {
-      return sides[Math.round(nx) % 4];
-    }
-  }
 
   const [isActive, setIsActive] = useState(false);
   //회전율 0이면 정면을 향하는 것으로 한다.
@@ -38,9 +44,8 @@ function CubeNavigation() {
   const [focus, setFocus] = useState("front");
   const cubeNavigation = useRef();
   const center = useRef();
-  const sides = ["front", "left", "back", "right", "top", "bottom"];
   const pos = useRef({
-    mouse: [0, 0],
+    mouse: [300, 300],
     cube: [0, 0],
   });
 
@@ -65,10 +70,10 @@ function CubeNavigation() {
           currentRotate.current[0] +
           "deg)";
       }, 15);
-      window.onclick = updatePos;
       window.onmousemove = updatePos;
     } else {
     }
+    window.onclick = updatePos;
     return () => {
       //인라인 스타일을 제거하여 css 스타일을 적용되게 한다
       if (isActive) {
@@ -91,51 +96,15 @@ function CubeNavigation() {
           ref={cubeNavigation}
         >
           <div className="center" ref={center}></div>
-          {/* <div className="face top active">
-            <ion-icon
-              name="logo-dropbox"
-              style={{ width: "75%", height: "75%" }}
-            ></ion-icon>
-          </div>
-          <div className="face left">
-            <ion-icon
-              name="log-in"
-              style={{ width: "75%", height: "75%" }}
-            ></ion-icon>
-          </div> */}
-
-          {sides.map((v) => {
-            if (v === "front")
-              return (
-                <div className="face front">
-                  <span></span>
-                  <span></span>
-                  <span></span>
-                </div>
-              );
-            return <Face side={v} isActive={focus === v ? true : false} />;
+          {sides.map((v, i) => {
+            return (
+              <Face
+                side={v}
+                name={v !== "front" ? iconNames[i] : null}
+                isActive={focus === v ? true : false}
+              />
+            );
           })}
-
-          {/* <div className="face right">
-            right
-            <ion-icon
-              name="radio-button-on"
-              style={{ width: "75%", height: "75%" }}
-            ></ion-icon>
-          </div>
-          <div className="face back">
-            <ion-icon
-              name="map"
-              style={{ width: "75%", height: "75%" }}
-            ></ion-icon>
-          </div>
-          <div className="face bottom">
-            bottom
-            <ion-icon
-              name="grid"
-              style={{ width: "75%", height: "75%" }}
-            ></ion-icon>
-          </div> */}
         </nav>
       </div>
       <div id="MenuDesc">Menu</div>
@@ -144,4 +113,3 @@ function CubeNavigation() {
 }
 
 export default CubeNavigation;
-//face를 컴포넌트화 하여 active클래스에 집어넣는다.

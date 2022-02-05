@@ -74,9 +74,11 @@
     .cube {
       width: 200px;
       height: 200px;
+
       .face {
         &.active {
           box-shadow: inset 5px 5px 10px black, inset -5px -5px 10px black;
+          background-color: rgba(210, 242, 255, 0.548);
         }
         box-shadow: inset 10px 10px 50px black, inset -10px -10px 50px black;
         &.front {
