@@ -1,4 +1,5 @@
 #CubeScene {
+  z-index: 0;
   position: fixed;
   right: 0;
   top: 0;
@@ -6,6 +7,7 @@
   perspective: 1000px;
   box-sizing: border-box;
   transition: 0.75s;
+  height: fit-content;
   .cube {
     width: 75px;
     height: 75px;
@@ -33,16 +35,16 @@
         transform: rotateY(0deg) translateZ(100px);
         span {
           position: absolute;
-          width: 65%;
+          width: 55%;
           height: 7.5%;
           background: black;
           border-radius: 4px;
           transition: 1s;
           &:nth-child(1) {
-            transform: translateY(-15px);
+            transform: translateY(-12px);
           }
           &:nth-child(2) {
-            transform: translateY(15px);
+            transform: translateY(12px);
           }
         }
       }
@@ -78,9 +80,10 @@
       .face {
         &.active {
           box-shadow: inset 5px 5px 10px black, inset -5px -5px 10px black;
-          background-color: rgba(210, 242, 255, 0.548);
+          background-color: rgb(210, 242, 255);
         }
         box-shadow: inset 10px 10px 50px black, inset -10px -10px 50px black;
+
         &.front {
           span {
             &:nth-child(1) {
@@ -113,15 +116,23 @@
     }
   }
 }
-#MenuDesc {
-  text-align: center;
-  position: relative;
-  bottom: 100px;
-}
+
 #CubeScene.active .cube .face {
   background-color: white;
 }
-
 #MenuDesc {
-  color: white;
+  color: black;
+  position: absolute;
+  bottom: -100%;
+  text-align: center;
+  width: 100%;
+  font-size: 50px;
+}
+#TouchScreen {
+  z-index: 1;
+  background-color: transparent;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  cursor: pointer;
 }
