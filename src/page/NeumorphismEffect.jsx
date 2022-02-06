@@ -3,7 +3,7 @@ import "./NeumorphismEffect.css";
 function NeumorphismEffect() {
   return (
     <div id="Background">
-      <div class="loader">
+      <div className="loader">
         <span>
           <i></i>
         </span>

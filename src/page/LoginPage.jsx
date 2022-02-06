@@ -3,22 +3,22 @@ import "./LoginPage.css";
 function LoginPage() {
   return (
     <div id="Background">
-      <div class="container">
+      <div className="container">
         <form>
           <h3>Log In</h3>
-          <div class="inputBox">
+          <div className="inputBox">
             <span>Username</span>
-            <div class="box">
-              <div class="icon">
+            <div className="box">
+              <div className="icon">
                 <ion-icon name="person"></ion-icon>
               </div>
               <input type="text" />
             </div>
           </div>
-          <div class="inputBox">
+          <div className="inputBox">
             <span>Password</span>
-            <div class="box">
-              <div class="icon">
+            <div className="box">
+              <div className="icon">
                 <ion-icon name="lock-closed"></ion-icon>
               </div>
               <input type="password" />
@@ -28,12 +28,12 @@ function LoginPage() {
             {" "}
             <input type="checkbox" /> Remember me{" "}
           </label>
-          <div class="inputBox">
-            <div class="box">
+          <div className="inputBox">
+            <div className="box">
               <input type="submit" value="log in" />
             </div>
           </div>
-          <a href="#" class="forgot">
+          <a href="#" className="forgot">
             forget Password
           </a>
         </form>
