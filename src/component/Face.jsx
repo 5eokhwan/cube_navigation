@@ -1,5 +1,4 @@
 import React from "react";
-
 function face({ isActive, side, name }) {
   return (
     <div className={isActive ? `face ${side} active` : `face ${side}`}>

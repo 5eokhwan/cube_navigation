@@ -1,5 +1,5 @@
 #CubeScene {
-  z-index: 0;
+  z-index: 99;
   position: fixed;
   right: 0;
   top: 0;
@@ -121,6 +121,7 @@
   background-color: white;
 }
 #MenuDesc {
+  display: none;
   color: black;
   position: absolute;
   bottom: -100%;
@@ -129,10 +130,11 @@
   font-size: 50px;
 }
 #TouchScreen {
-  z-index: 1;
+  z-index: 100;
   background-color: transparent;
   width: 100vw;
   height: 100vh;
   position: fixed;
+  inset: 0;
   cursor: pointer;
 }

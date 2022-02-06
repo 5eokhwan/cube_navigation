@@ -1,7 +1,7 @@
 import "./CubeNavigation.scss";
 import Face from "./Face";
 import { useState, useEffect, useRef } from "react";
-
+import { withRouter } from "react-router-dom";
 const sides = ["front", "left", "back", "right", "top", "bottom"];
 const iconNames = [
   null,
@@ -28,7 +28,7 @@ function returnCurFace(x, y) {
   }
 }
 
-function CubeNavigation() {
+function CubeNavigation({ linkData, history }) {
   function updatePos(e) {
     //마우스 이벤트 발생시 마우스 갱신
     if (e) pos.current.mouse = [e.clientX, e.clientY];
@@ -43,7 +43,6 @@ function CubeNavigation() {
   }
 
   const [isActive, setIsActive] = useState(false);
-  //회전율 0이면 정면을 향하는 것으로 한다.
   const currentRotate = useRef([]);
   const [focus, setFocus] = useState("front");
   const cubeNavigation = useRef();
@@ -54,7 +53,6 @@ function CubeNavigation() {
   });
 
   useEffect(() => {
-    // console.log(pos.current.mouse);
     let mouseMoveInterval;
     if (isActive) {
       cubeNavigation.current.style.transition = "";
@@ -79,12 +77,15 @@ function CubeNavigation() {
         cubeNavigation.current.style.transition =
           "width 0.75s, height 0.75s, transform 0.75s";
         clearInterval(mouseMoveInterval);
+        window.onmousemove = null;
       } else window.onmousemove = updatePos;
     };
   }, [isActive]);
+
   const updateCurMenu = () => {
-    console.log(focus);
     setIsActive(false);
+    if (focus === "front") return;
+    history.push(linkData[`${focus}`]);
   };
   return (
     <>
@@ -105,6 +106,7 @@ function CubeNavigation() {
                 side={v}
                 name={iconNames[i]}
                 isActive={focus === v ? true : false}
+                linkData={linkData}
               />
             );
           })}
@@ -115,4 +117,4 @@ function CubeNavigation() {
   );
 }
 
-export default CubeNavigation;
+export default withRouter(CubeNavigation);
