@@ -92,7 +92,84 @@ function AmazonBoxPage() {
       eaque excepturi culpa!Lorem ipsum, dolor sit amet consectetur adipisicing
       elit. Voluptatibus praesentium aliquam nulla, officiis illum magnam sit
       omnis, autem neque, odit asperiores? Id, cum accusantium ipsum placeat
-      accusamus eaque excepturi culpa!
+      accusamus eaque excepturi culpa!psum, dolor sit amet consectetur
+      adipisicing elit. Voluptatibus praesentium aliquam nulla, officiis illum
+      magnam sit omnis, autem neque, odit asperiores? Id, cum accusantium ipsum
+      placeat accusamus eaque excepturi culpa!Lorem ipsum, dolor sit amet
+      consectetur adipisicing elit. Voluptatibus praesentium aliquam nulla,
+      officiis illum magnam sit omnis, autem neque, odit asperiores? Id, cum
+      accusantium ipsum placeat accusamus eaque excepturi culpa!Lorem ipsum,
+      dolor sit amet consectetur adipisicing elit. Voluptatibus praesentium
+      aliquam nulla, officiis illum magnam sit omnis, autem neque, odit
+      asperiores? Id, cum accusantium ipsum placeat accusamus eaque excepturi
+      culpa!Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+      Voluptatibus praesentium aliquam nulla, officiis illum magnam sit omnis,
+      autem neque, odit asperiores? Id, cum accusantium ipsum placeat accusamus
+      eaque excepturi culpa!Lorem ipsum, dolor sit amet consectetur adipisicing
+      elit. Voluptatibus praesentium aliquam nulla, officiis illum magnam sit
+      omnis, autem neque, odit asperiores? Id, cum accusantium ipsum placeat
+      accusamus eaque excepturi culpa!Lorem ipsum, dolor sit amet consectetur
+      adipisicing elit. Voluptatibus praesentium aliquam nulla, officiis illum
+      magnam sit omnis, autem neque, odit asperiores? Id, cum accusantium ipsum
+      placeat accusamus eaque excepturi culpa!Lorem ipsum, dolor sit amet
+      consectetur adipisicing elit. Voluptatibus praesentium aliquam nulla,
+      officiis illum magnam sit omnis, autem neque, odit asperiores? Id, cum
+      accusantium ipsum placeat accusamus eaque excepturi culpa!Lorem ipsum,
+      dolor sit amet consectetur adipisicing elit. Voluptatibus praesentium
+      aliquam nulla, officiis illum magnam sit omnis, autem neque, odit
+      asperiores? Id, cum accusantium ipsum placeat accusamus eaque excepturi
+      culpa!Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+      Voluptatibus praesentium aliquam nulla, officiis illum magnam sit omnis,
+      autem neque, odit asperiores? Id, cum accusantium ipsum placeat accusamus
+      eaque excepturi culpa!Lorem ipsum, dolor sit amet consectetur adipisicing
+      elit. Voluptatibus praesentium aliquam nulla, officiis illum magnam sit
+      omnis, autem neque, odit asperiores? Id, cum accusantium ipsum placeat
+      accusamus eaque excepturi culpa!Lorem ipsum, dolor sit amet consectetur
+      adipisicing elit. Voluptatibus praesentium aliquam nulla, officiis illum
+      magnam sit omnis, autem neque, odit asperiores? Id, cum accusantium ipsum
+      placeat accusamus eaque excepturi culpa!Lorem ipsum, dolor sit amet
+      consectetur adipisicing elit. Voluptatibus praesentium aliquam nulla,
+      officiis illum magnam sit omnis, autem neque, odit asperiores? Id, cum
+      accusantium ipsum placeat accusamus eaque excepturi culpa!Lorem ipsum,
+      dolor sit amet consectetur adipisicing elit. Voluptatibus praesentium
+      aliquam nulla, officiis illum magnam sit omnis, autem neque, odit
+      asperiores? Id, cum accusantium ipsum placeat accusamus eaque excepturi
+      culpa!Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+      Voluptatibus praesentium aliquam nulla, officiis illum magnam sit omnis,
+      autem neque, odit asperiores? Id, cum accusantium ipsum placeat accusamus
+      eaque excepturi culpa!Lorem ipsum, dolor sit amet consectetur adipisicing
+      elit. Voluptatibus praesentium aliquam nulla, officiis illum magnam sit
+      omnis, autem neque, odit asperiores? Id, cum accusantium ipsum placeat
+      accusamus eaque excepturi culpa!Lorem ipsum, dolor sit amet consectetur
+      adipisicing elit. Voluptatibus praesentium aliquam nulla, officiis illum
+      magnam sit omnis, autem neque, odit asperiores? Id, cum accusantium ipsum
+      placeat accusamus eaque excepturi culpa!Lorem ipsum, dolor sit amet
+      consectetur adipisicing elit. Voluptatibus praesentium aliquam nulla,
+      officiis illum magnam sit omnis, autem neque, odit asperiores? Id, cum
+      accusantium ipsum placeat accusamus eaque excepturi culpa!Lorem ipsum,
+      dolor sit amet consectetur adipisicing elit. Voluptatibus praesentium
+      aliquam nulla, officiis illum magnam sit omnis, autem neque, odit
+      asperiores? Id, cum accusantium ipsum placeat accusamus eaque excepturi
+      culpa!Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+      Voluptatibus praesentium aliquam nulla, officiis illum magnam sit omnis,
+      autem neque, odit asperiores? Id, cum accusantium ipsum placeat accusamus
+      eaque excepturi culpa!Lorem ipsum, dolor sit amet consectetur adipisicing
+      elit. Voluptatibus praesentium aliquam nulla, officiis illum magnam sit
+      omnis, autem neque, odit asperiores? Id, cum accusantium ipsum placeat
+      accusamus eaque excepturi culpa!Lorem ipsum, dolor sit amet consectetur
+      adipisicing elit. Voluptatibus praesentium aliquam nulla, officiis illum
+      magnam sit omnis, autem neque, odit asperiores? Id, cum accusantium ipsum
+      placeat accusamus eaque excepturi culpa!Lorem ipsum, dolor sit amet
+      consectetur adipisicing elit. Voluptatibus praesentium aliquam nulla,
+      officiis illum magnam sit omnis, autem neque, odit asperiores? Id, cum
+      accusantium ipsum placeat accusamus eaque excepturi culpa!Lorem ipsum,
+      dolor sit amet consectetur adipisicing elit. Voluptatibus praesentium
+      aliquam nulla, officiis illum magnam sit omnis, autem neque, odit
+      asperiores? Id, cum accusantium ipsum placeat accusamus eaque excepturi
+      culpa!Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+      Voluptatibus praesentium aliquam nulla, officiis illum magnam sit omnis,
+      autem neque, odit asperiores? Id, cum accusantium ipsum placeat accusamus
+      eaque ex
     </div>
   );
 }

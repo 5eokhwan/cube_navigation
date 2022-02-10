@@ -2,15 +2,8 @@ import "./CubeNavigation.scss";
 import Face from "./Face";
 import { useState, useEffect, useRef } from "react";
 import { withRouter } from "react-router-dom";
+
 const sides = ["front", "left", "back", "right", "top", "bottom"];
-const iconNames = [
-  null,
-  "logo-dropbox",
-  "log-in",
-  "radio-button-on",
-  "map",
-  "grid",
-];
 
 function returnCurFace(x, y) {
   let nx = (x % 360) / 90;
@@ -28,7 +21,7 @@ function returnCurFace(x, y) {
   }
 }
 
-function CubeNavigation({ linkData, history }) {
+function CubeNavigation({ data, history }) {
   function updatePos(e) {
     //마우스 이벤트 발생시 마우스 갱신
     if (e) pos.current.mouse = [e.clientX, e.clientY];
@@ -45,6 +38,7 @@ function CubeNavigation({ linkData, history }) {
   const [isActive, setIsActive] = useState(false);
   const currentRotate = useRef([]);
   const [focus, setFocus] = useState("front");
+  const [datas, setDatas] = useState(data);
   const cubeNavigation = useRef();
   const center = useRef();
   const pos = useRef({
@@ -85,7 +79,13 @@ function CubeNavigation({ linkData, history }) {
   const updateCurMenu = () => {
     setIsActive(false);
     if (focus === "front") return;
-    history.push(linkData[`${focus}`]);
+    history.push(datas[`${focus}`].path);
+    const newDatas = { ...datas };
+    [newDatas[`${focus}`], newDatas["front"]] = [
+      datas["front"],
+      datas[`${focus}`],
+    ];
+    setDatas(newDatas);
   };
   return (
     <>
@@ -104,9 +104,8 @@ function CubeNavigation({ linkData, history }) {
               <Face
                 key={v + i}
                 side={v}
-                name={iconNames[i]}
                 isActive={focus === v ? true : false}
-                linkData={linkData}
+                icon={datas[`${v}`].icon}
               />
             );
           })}
