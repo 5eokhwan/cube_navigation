@@ -2,5 +2,10 @@
   img.nav.icon {
     width: 75%;
     height: 75%;
+    transform: initial;
+  }
+  &.selection {
+    display: none;
+    background-color: red;
   }
 }

@@ -1,9 +1,19 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import "./Face.scss";
-function face({ isActive, side, icon }) {
+function Face({ isFocus, side, icon, selectFace }) {
+  const selectionFace = useRef();
+  useEffect(() => {
+    if (side !== "front" && isFocus) {
+      selectFace(selectionFace.current, side);
+    }
+  }, [isFocus]);
+
   return (
     <>
-      <div className={isActive ? `face ${side} active` : `face ${side}`}>
+      <div
+        className={isFocus ? `face ${side} active` : `face ${side}`}
+        ref={selectionFace}
+      >
         {side === "front" ? (
           <>
             <span></span>
@@ -16,13 +26,13 @@ function face({ isActive, side, icon }) {
       </div>
 
       {/* 선택 시 animation용 */}
-      {/* <div className={isActive ? `face ${side} active` : `face ${side}`}>
-        {side === "front" ? null : (
+      {/* {side !== "front" && isFocus ? (
+        <div className={`face ${side} selection active`} ref={selectionFace}>
           <img className="nav icon" src={icon} alt="icon" />
-        )}
-      </div> */}
+        </div>
+      ) : null} */}
     </>
   );
 }
 
-export default face;
+export default Face;

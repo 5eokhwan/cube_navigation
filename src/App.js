@@ -18,11 +18,11 @@ import spin_icon from "./icons/spin_icon.png";
 
 const cubeNavData = {
   front: { path: "/", icon: box_icon, name: "메뉴1", desc: "" },
-  left: { path: "/box", icon: btn_icon, name: "메뉴2", desc: "" },
-  back: { path: "/spinner", icon: circle_line_icon, name: "메뉴3", desc: "" },
-  right: { path: "/neumorphism", icon: home_icon, name: "메뉴4", desc: "" },
-  top: { path: "/hoverButton", icon: login_icon, name: "메뉴5", desc: "" },
-  bottom: { path: "/navigationMenu", icon: spin_icon, name: "메뉴6", desc: "" },
+  left: { path: "/2", icon: btn_icon, name: "메뉴2", desc: "" },
+  back: { path: "/3", icon: circle_line_icon, name: "메뉴3", desc: "" },
+  right: { path: "/4", icon: home_icon, name: "메뉴4", desc: "" },
+  top: { path: "/5", icon: login_icon, name: "메뉴5", desc: "" },
+  bottom: { path: "/6", icon: spin_icon, name: "메뉴6", desc: "" },
 };
 
 function App() {
@@ -31,11 +31,11 @@ function App() {
       <CubeNavigation data={cubeNavData} />
       <Switch>
         <Route exact path="/" component={LoginPage} />
-        <Route exact path="/box" component={AmazonBoxPage} />
-        <Route exact path="/neumorphism" component={NeumorphismEffect} />
-        <Route exact path="/hoverButton" component={HoverButton} />
-        <Route exact path="/navigationMenu" component={NavigationMenu} />
-        <Route exact path="/spinner" component={spinnerPage} />
+        <Route exact path="/2" component={AmazonBoxPage} />
+        <Route exact path="/3" component={NeumorphismEffect} />
+        <Route exact path="/4" component={HoverButton} />
+        <Route exact path="/5" component={NavigationMenu} />
+        <Route exact path="/6" component={spinnerPage} />
       </Switch>
     </>
   );

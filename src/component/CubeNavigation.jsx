@@ -2,7 +2,7 @@ import "./CubeNavigation.scss";
 import Face from "./Face";
 import { useState, useEffect, useRef } from "react";
 import { withRouter } from "react-router-dom";
-
+import { faceTransform } from "./data.js";
 const sides = ["front", "left", "back", "right", "top", "bottom"];
 
 function returnCurFace(x, y) {
@@ -40,6 +40,8 @@ function CubeNavigation({ data, history }) {
   const [focus, setFocus] = useState("front");
   const [datas, setDatas] = useState(data);
   const cubeNavigation = useRef();
+  const focusedFaceContainer = useRef();
+  const scene = useRef();
   const center = useRef();
   const pos = useRef({
     mouse: [300, 300],
@@ -52,10 +54,18 @@ function CubeNavigation({ data, history }) {
       cubeNavigation.current.style.transition = "";
       mouseMoveInterval = setInterval(() => {
         updatePos();
-        setFocus(
-          returnCurFace(currentRotate.current[0], currentRotate.current[1])
+        const curFocus = returnCurFace(
+          currentRotate.current[0],
+          currentRotate.current[1]
         );
+        setFocus(curFocus);
         cubeNavigation.current.style.transform =
+          "rotateX(" +
+          currentRotate.current[1] +
+          "deg) rotateY(" +
+          currentRotate.current[0] +
+          "deg)";
+        focusedFaceContainer.current.style.transform =
           "rotateX(" +
           currentRotate.current[1] +
           "deg) rotateY(" +
@@ -75,7 +85,19 @@ function CubeNavigation({ data, history }) {
       } else window.onmousemove = updatePos;
     };
   }, [isActive]);
-
+  const selectFace = (ref, side) => {
+    const node = ref.cloneNode(true);
+    console.log("ref", ref, node);
+    // ref.remove();
+    if (focusedFaceContainer.current.firstChild)
+      focusedFaceContainer.current.firstChild.remove();
+    focusedFaceContainer.current.appendChild(node);
+    node.classList.add(side);
+    // node.classList.add("selection");
+    console.log("faceTransform", faceTransform[side]);
+    node.style.background = "black";
+    // node.style.animation = "fadeOut 1s infinite";
+  };
   const updateCurMenu = () => {
     setIsActive(false);
     if (focus === "front") return;
@@ -90,7 +112,7 @@ function CubeNavigation({ data, history }) {
   return (
     <>
       {isActive && <div id="TouchScreen" onClick={updateCurMenu}></div>}
-      <div id="CubeScene" className={isActive ? "active" : ""}>
+      <div className={isActive ? "CubeScene active" : "CubeScene"}>
         <nav
           className="cube"
           onClick={() => {
@@ -104,13 +126,17 @@ function CubeNavigation({ data, history }) {
               <Face
                 key={v + i}
                 side={v}
-                isActive={focus === v ? true : false}
+                isFocus={focus === v ? true : false}
                 icon={datas[`${v}`].icon}
+                selectFace={selectFace}
               />
             );
           })}
         </nav>
         {isActive && <div id="MenuDesc">{focus}</div>}
+      </div>
+      <div className="CubeScene active selectorScene">
+        <div className="cube selectorCube" ref={focusedFaceContainer}></div>
       </div>
     </>
   );
