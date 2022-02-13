@@ -41,7 +41,6 @@ function CubeNavigation({ data, history }) {
   const [datas, setDatas] = useState(data);
   const cubeNavigation = useRef();
   const focusedFaceContainer = useRef();
-  const scene = useRef();
   const center = useRef();
   const pos = useRef({
     mouse: [300, 300],
@@ -65,12 +64,6 @@ function CubeNavigation({ data, history }) {
           "deg) rotateY(" +
           currentRotate.current[0] +
           "deg)";
-        focusedFaceContainer.current.style.transform =
-          "rotateX(" +
-          currentRotate.current[1] +
-          "deg) rotateY(" +
-          currentRotate.current[0] +
-          "deg)";
       }, 15);
     }
     window.onclick = updatePos;
@@ -86,27 +79,31 @@ function CubeNavigation({ data, history }) {
     };
   }, [isActive]);
   const selectFace = (ref, side) => {
+    focusedFaceContainer.current.style.transform =
+      "rotateX(" +
+      currentRotate.current[1] +
+      "deg) rotateY(" +
+      currentRotate.current[0] +
+      "deg)";
     const node = ref.cloneNode(true);
     console.log("ref", ref, node);
-    // ref.remove();
-    if (focusedFaceContainer.current.firstChild)
-      focusedFaceContainer.current.firstChild.remove();
     focusedFaceContainer.current.appendChild(node);
     node.classList.add(side);
-    // node.classList.add("selection");
+    node.querySelector("img").src = datas["front"].icon;
     console.log("faceTransform", faceTransform[side]);
-    node.style.background = "black";
-    // node.style.animation = "fadeOut 1s infinite";
+    node.style.animation =
+      "fadeOut" + side[0].toUpperCase() + side.substr(1) + " 0.75s backwards";
+    node.style.animationFillMode = "both";
+    setTimeout(() => {
+      focusedFaceContainer.current.firstChild.remove();
+    }, 750);
   };
   const updateCurMenu = () => {
     setIsActive(false);
     if (focus === "front") return;
-    history.push(datas[`${focus}`].path);
+    history.push(datas[focus].path);
     const newDatas = { ...datas };
-    [newDatas[`${focus}`], newDatas["front"]] = [
-      datas["front"],
-      datas[`${focus}`],
-    ];
+    [newDatas[focus], newDatas["front"]] = [datas["front"], datas[focus]];
     setDatas(newDatas);
   };
   return (
@@ -129,6 +126,7 @@ function CubeNavigation({ data, history }) {
                 isFocus={focus === v ? true : false}
                 icon={datas[`${v}`].icon}
                 selectFace={selectFace}
+                isActive={isActive}
               />
             );
           })}

@@ -1,12 +1,11 @@
 import React, { useRef, useEffect } from "react";
 import "./Face.scss";
-function Face({ isFocus, side, icon, selectFace }) {
+function Face({ isFocus, side, icon, selectFace, isActive }) {
   const selectionFace = useRef();
   useEffect(() => {
-    if (side !== "front" && isFocus) {
+    if (isFocus && !isActive && side !== "front")
       selectFace(selectionFace.current, side);
-    }
-  }, [isFocus]);
+  }, [isActive]);
 
   return (
     <>
@@ -24,13 +23,6 @@ function Face({ isFocus, side, icon, selectFace }) {
           <img className="nav icon" src={icon} alt="icon" />
         )}
       </div>
-
-      {/* 선택 시 animation용 */}
-      {/* {side !== "front" && isFocus ? (
-        <div className={`face ${side} selection active`} ref={selectionFace}>
-          <img className="nav icon" src={icon} alt="icon" />
-        </div>
-      ) : null} */}
     </>
   );
 }

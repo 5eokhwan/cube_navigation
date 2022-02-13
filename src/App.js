@@ -15,13 +15,13 @@ import circle_line_icon from "./icons/circle_line_icon.png";
 import home_icon from "./icons/home_icon.png";
 import login_icon from "./icons/login_icon.png";
 import spin_icon from "./icons/spin_icon.png";
-
+import balance_icon from "./icons/balance_icon.png";
 const cubeNavData = {
-  front: { path: "/", icon: box_icon, name: "메뉴1", desc: "" },
-  left: { path: "/2", icon: btn_icon, name: "메뉴2", desc: "" },
+  front: { path: "/", icon: login_icon, name: "메뉴1", desc: "" },
+  left: { path: "/2", icon: balance_icon, name: "메뉴2", desc: "" },
   back: { path: "/3", icon: circle_line_icon, name: "메뉴3", desc: "" },
   right: { path: "/4", icon: home_icon, name: "메뉴4", desc: "" },
-  top: { path: "/5", icon: login_icon, name: "메뉴5", desc: "" },
+  top: { path: "/5", icon: box_icon, name: "메뉴5", desc: "" },
   bottom: { path: "/6", icon: spin_icon, name: "메뉴6", desc: "" },
 };
 
