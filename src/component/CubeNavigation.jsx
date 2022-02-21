@@ -40,7 +40,7 @@ function CubeNavigation({ data, history }) {
   const [focus, setFocus] = useState("front");
   const [datas, setDatas] = useState(data);
   const cubeNavigation = useRef();
-  const focusedFaceContainer = useRef();
+  const selectorCube = useRef();
   const center = useRef();
   const pos = useRef({
     mouse: [300, 300],
@@ -79,7 +79,8 @@ function CubeNavigation({ data, history }) {
     };
   }, [isActive]);
   const selectFace = (ref, side) => {
-    focusedFaceContainer.current.style.transform =
+    selectorCube.current.style.display = "block";
+    selectorCube.current.style.transform =
       "rotateX(" +
       currentRotate.current[1] +
       "deg) rotateY(" +
@@ -87,7 +88,7 @@ function CubeNavigation({ data, history }) {
       "deg)";
     const node = ref.cloneNode(true);
     console.log("ref", ref, node);
-    focusedFaceContainer.current.appendChild(node);
+    selectorCube.current.appendChild(node);
     node.classList.add(side);
     node.querySelector("img").src = datas["front"].icon;
     console.log("faceTransform", faceTransform[side]);
@@ -95,7 +96,8 @@ function CubeNavigation({ data, history }) {
       "fadeOut" + side[0].toUpperCase() + side.substr(1) + " 0.75s backwards";
     node.style.animationFillMode = "both";
     setTimeout(() => {
-      focusedFaceContainer.current.firstChild.remove();
+      selectorCube.current.firstChild.remove();
+      selectorCube.current.style.display = "none";
     }, 750);
   };
   const updateCurMenu = () => {
@@ -134,7 +136,7 @@ function CubeNavigation({ data, history }) {
         {isActive && <div id="MenuDesc">{focus}</div>}
       </div>
       <div className="CubeScene active selectorScene">
-        <div className="cube selectorCube" ref={focusedFaceContainer}></div>
+        <div className="cube selectorCube" ref={selectorCube}></div>
       </div>
     </>
   );
