@@ -6,7 +6,7 @@ import { faceTransform } from "./data.js";
 const sides = ["front", "left", "back", "right", "top", "bottom"];
 
 function returnCurFace(x, y) {
-  let nx = (x % 360) / 90;
+  let nx = (x % 360) / 90; // 0~3
   const ny = (y % 360) / 90;
   if ((2.5 <= ny && ny < 3.5) || (-1.5 <= ny && ny < -0.5)) return "top";
   else if ((-3.5 <= ny && ny < -2.5) || (0.5 <= ny && ny < 1.5))
@@ -26,22 +26,23 @@ function CubeNavigation({ data, history }) {
     //마우스 이벤트 발생시 마우스 갱신
     if (e) pos.current.mouse = [e.clientX, e.clientY];
     pos.current.cube = [
-      center.current.getBoundingClientRect().left,
-      center.current.getBoundingClientRect().top,
+      $center.current.getBoundingClientRect().left,
+      $center.current.getBoundingClientRect().top,
     ];
     currentRotate.current = [
       pos.current.mouse[0] - pos.current.cube[0],
       pos.current.mouse[1] - pos.current.cube[1],
     ];
+    console.log(pos.current, currentRotate.current);
   }
 
   const [isActive, setIsActive] = useState(false);
   const currentRotate = useRef([]);
   const [focus, setFocus] = useState("front");
   const [datas, setDatas] = useState(data);
-  const cubeNavigation = useRef();
-  const selectorCube = useRef();
-  const center = useRef();
+  const $cubeNavigation = useRef();
+  const $selectorCube = useRef();
+  const $center = useRef();
   const pos = useRef({
     mouse: [300, 300],
     cube: [0, 0],
@@ -50,7 +51,8 @@ function CubeNavigation({ data, history }) {
   useEffect(() => {
     let mouseMoveInterval;
     if (isActive) {
-      cubeNavigation.current.style.transition = "";
+      window.onmousemove = updatePos;
+      $cubeNavigation.current.style.transition = "";
       mouseMoveInterval = setInterval(() => {
         updatePos();
         const curFocus = returnCurFace(
@@ -58,29 +60,35 @@ function CubeNavigation({ data, history }) {
           currentRotate.current[1]
         );
         setFocus(curFocus);
-        cubeNavigation.current.style.transform =
+        $cubeNavigation.current.style.transform =
           "rotateX(" +
           currentRotate.current[1] +
           "deg) rotateY(" +
           currentRotate.current[0] +
           "deg)";
       }, 15);
+    } else {
+      //인라인 스타일을 제거하여 css 스타일을 적용되게 한다
+      //비동기로 실행
+      setTimeout(() => {
+        $cubeNavigation.current.style.transform = "";
+        $cubeNavigation.current.style.transition =
+          "width 0.75s, height 0.75s, transform 0.75s";
+      });
     }
     window.onclick = updatePos;
     return () => {
-      //인라인 스타일을 제거하여 css 스타일을 적용되게 한다
       if (isActive) {
-        cubeNavigation.current.style.transform = "";
-        cubeNavigation.current.style.transition =
-          "width 0.75s, height 0.75s, transform 0.75s";
+        //isActive가 false가 되기 직전에 실행
         clearInterval(mouseMoveInterval);
         window.onmousemove = null;
-      } else window.onmousemove = updatePos;
+      }
     };
   }, [isActive]);
+
   const selectFace = (ref, side) => {
-    selectorCube.current.style.display = "block";
-    selectorCube.current.style.transform =
+    $selectorCube.current.style.display = "block";
+    $selectorCube.current.style.transform =
       "rotateX(" +
       currentRotate.current[1] +
       "deg) rotateY(" +
@@ -88,7 +96,7 @@ function CubeNavigation({ data, history }) {
       "deg)";
     const node = ref.cloneNode(true);
     console.log("ref", ref, node);
-    selectorCube.current.appendChild(node);
+    $selectorCube.current.appendChild(node);
     node.classList.add(side);
     node.querySelector("img").src = datas["front"].icon;
     console.log("faceTransform", faceTransform[side]);
@@ -96,8 +104,8 @@ function CubeNavigation({ data, history }) {
       "fadeOut" + side[0].toUpperCase() + side.substr(1) + " 0.75s backwards";
     node.style.animationFillMode = "both";
     setTimeout(() => {
-      selectorCube.current.firstChild.remove();
-      selectorCube.current.style.display = "none";
+      $selectorCube.current.firstChild.remove();
+      $selectorCube.current.style.display = "none";
     }, 750);
   };
   const updateCurMenu = () => {
@@ -117,9 +125,9 @@ function CubeNavigation({ data, history }) {
           onClick={() => {
             if (!isActive) setIsActive(true);
           }}
-          ref={cubeNavigation}
+          ref={$cubeNavigation}
         >
-          <div className="center" ref={center}></div>
+          <div className="center" ref={$center}></div>
           {sides.map((v, i) => {
             return (
               <Face
@@ -136,7 +144,7 @@ function CubeNavigation({ data, history }) {
         {isActive && <div id="MenuDesc">{focus}</div>}
       </div>
       <div className="CubeScene active selectorScene">
-        <div className="cube selectorCube" ref={selectorCube}></div>
+        <div className="cube selectorCube" ref={$selectorCube}></div>
       </div>
     </>
   );
