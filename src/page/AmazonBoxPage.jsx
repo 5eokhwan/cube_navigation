@@ -4,8 +4,8 @@ function AmazonBoxPage() {
   return (
     <main id="BalanceContainer">
       <div id="Balance">
-        <div class="loader">
-          <div class="ball"></div>
+        <div className="loader">
+          <div className="ball"></div>
         </div>
       </div>
     </main>

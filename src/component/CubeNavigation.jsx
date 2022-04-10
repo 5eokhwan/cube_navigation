@@ -2,7 +2,6 @@ import "./CubeNavigation.scss";
 import Face from "./Face";
 import { useState, useEffect, useRef } from "react";
 import { withRouter } from "react-router-dom";
-import { faceTransform } from "./data.js";
 const sides = ["front", "left", "back", "right", "top", "bottom"];
 
 function returnCurFace(x, y) {
@@ -54,12 +53,15 @@ function CubeNavigation({ data, history }) {
       window.onmousemove = updatePos;
       $cubeNavigation.current.style.transition = "";
       mouseMoveInterval = setInterval(() => {
+        //마우스가 움직이지 않아도 큐브 위치와 회전 변수 인터벌마다 업데이트
         updatePos();
+        //포커스 된 메뉴 면 업데이트
         const curFocus = returnCurFace(
           currentRotate.current[0],
           currentRotate.current[1]
         );
         setFocus(curFocus);
+        //큐브 회전
         $cubeNavigation.current.style.transform =
           "rotateX(" +
           currentRotate.current[1] +
@@ -79,13 +81,13 @@ function CubeNavigation({ data, history }) {
     window.onclick = updatePos;
     return () => {
       if (isActive) {
-        //isActive가 false가 되기 직전에 실행
         clearInterval(mouseMoveInterval);
         window.onmousemove = null;
       }
     };
   }, [isActive]);
 
+  //애니메이션 효과 노드 생성 및 실행
   const selectFace = (ref, side) => {
     $selectorCube.current.style.display = "block";
     $selectorCube.current.style.transform =
@@ -99,23 +101,24 @@ function CubeNavigation({ data, history }) {
     $selectorCube.current.appendChild(node);
     node.classList.add(side);
     node.querySelector("img").src = datas["front"].icon;
-    console.log("faceTransform", faceTransform[side]);
     node.style.animation =
-      "fadeOut" + side[0].toUpperCase() + side.substr(1) + " 0.75s backwards";
-    node.style.animationFillMode = "both";
+      "fadeOut" + side[0].toUpperCase() + side.substr(1) + " 0.75s both";
     setTimeout(() => {
       $selectorCube.current.firstChild.remove();
       $selectorCube.current.style.display = "none";
     }, 750);
   };
+
   const updateCurMenu = () => {
     setIsActive(false);
     if (focus === "front") return;
     history.push(datas[focus].path);
     const newDatas = { ...datas };
+    //front면은 다른 메뉴정보를 저장만 시키고 노출시키진 않음(front는 X를 렌더링)
     [newDatas[focus], newDatas["front"]] = [datas["front"], datas[focus]];
     setDatas(newDatas);
   };
+
   return (
     <>
       {isActive && <div id="TouchScreen" onClick={updateCurMenu}></div>}

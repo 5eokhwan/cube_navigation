@@ -1,17 +1,17 @@
 import React, { useRef, useEffect } from "react";
 import "./Face.scss";
 function Face({ isFocus, side, icon, selectFace, isActive }) {
-  const selectionFace = useRef();
+  const $selectionFace = useRef();
   useEffect(() => {
     if (isFocus && !isActive && side !== "front")
-      selectFace(selectionFace.current, side);
+      selectFace($selectionFace.current, side);
   }, [isActive]);
 
   return (
     <>
       <div
         className={isFocus ? `face ${side} active` : `face ${side}`}
-        ref={selectionFace}
+        ref={$selectionFace}
       >
         {side === "front" ? (
           <>
